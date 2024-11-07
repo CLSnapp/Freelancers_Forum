@@ -15,9 +15,9 @@ body.style.alignItems = "center";
 body.style.height = "100vh";
 body.style.margin = "0";
 
-let freelancerCount = freelancers.length;
 
-//calculate average price
+
+//calculate average price and return it
 function averagePrice() {
   const sum = freelancers.reduce((acc, current) => acc + current.price, 0);
   return sum / freelancers.length;
@@ -70,6 +70,10 @@ const renderFreelancer = () => {
   avgPrice.style.textAlign = "center";
 };
 
+//let variable be assigned to the number of elements inside the array
+let freelancerCount = freelancers.length;
+
+//if statement to make sure the variable to does not constantly run (infinite loop) 
 function getRandomFL() {
   if (freelancerCount >= 10) {
     return;
@@ -98,6 +102,7 @@ function getRandomFL() {
     occupation: randomOccu,
   };
 
+  //push new freelancer into freelancer, increase the variable by 1, then update the array
   freelancers.push(newFreelancer);
   freelancerCount++;
   renderFreelancer();
