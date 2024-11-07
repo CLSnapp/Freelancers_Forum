@@ -9,13 +9,20 @@ const freelancers = [
   // { name: "Reba", price: 65, occupation: "Driver" },
 ];
 
+//body attributes
 const body = document.querySelector("body");
-body.style.justifyContent = "center";
-body.style.alignItems = "center";
-body.style.height = "100vh";
-body.style.margin = "0";
+body.style.border = "double";
+body.style.color = "yellow";
+body.style.backgroundColor = "black";
 
-
+//header attributes
+const header = document.getElementById("forum-header");
+header.innerHTML = `<h1>Freelancer Forum</h1>`;
+header.style.display = "flex";
+header.style.justifyContent = "center";
+header.style.flexDirection = "column";
+header.style.alignItems = "center";
+header.style.textAlign = "center";
 
 //calculate average price and return it
 function averagePrice() {
@@ -23,6 +30,7 @@ function averagePrice() {
   return sum / freelancers.length;
 }
 
+//display attributes for render popup of each freelancer
 const renderFreelancer = () => {
   const freelancerDisplay = document.getElementById("freelancer-display");
   freelancerDisplay.style.display = "flex";
@@ -30,9 +38,12 @@ const renderFreelancer = () => {
   freelancerDisplay.style.justifyContent = "space-evenly";
   freelancerDisplay.style.alignContent = "center";
   freelancerDisplay.style.flexDirection = "column";
-  freelancerDisplay.style.gap = "20px";
+  freelancerDisplay.style.textAlign = "center";
+  freelancerDisplay.style.gap = "35px";
+  freelancerDisplay.style.marginBottom = "20px";
   freelancerDisplay.innerHTML = "";
 
+  //loop through all the elements in the array, and execute the function to each element in the array
   freelancers.forEach((freelancer) => {
     const div = document.createElement("div");
     div.classList.add("freelancer");
@@ -56,11 +67,19 @@ const renderFreelancer = () => {
     price.innerText = `Price: $${freelancer.price}`;
 
     div.append(h3, occu, price);
-    // div.append(occu);
-    // div.append(price);
     freelancerDisplay.append(div);
   });
 
+  //attributes for available freelancer header
+  const availableFL = document.getElementById("available-freelancers");
+  availableFL.innerHTML = `<h1>Available Freelancers</h1>`;
+  availableFL.style.display = "flex";
+  availableFL.style.justifyContent = "center";
+  availableFL.style.flexDirection = "column";
+  availableFL.style.alignItems = "center";
+  availableFL.style.textAlign = "center";
+
+  //attributes for average price
   const avgPrice = document.getElementById("average-price");
   avgPrice.innerHTML = `<h3>The Average Starting Price is $${averagePrice()}.</h3>`;
   avgPrice.style.display = "flex";
@@ -73,8 +92,9 @@ const renderFreelancer = () => {
 //let variable be assigned to the number of elements inside the array
 let freelancerCount = freelancers.length;
 
-//if statement to make sure the variable to does not constantly run (infinite loop) 
+//creation of random freelancers
 function getRandomFL() {
+  //if statement to make sure the variable to does not constantly run (infinite loop)
   if (freelancerCount >= 10) {
     return;
   }
@@ -112,6 +132,5 @@ renderFreelancer();
 //setInterval(function, interval(in milliseconds)) repeatedly executes a provided function at a fixed interval
 setInterval(getRandomFL, 3000);
 
-//   body.append(section);
 // init();
 // getRandomFL();
